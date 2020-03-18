@@ -1,6 +1,6 @@
 <?php
 
-function parse_html( $file ) {
+public function parse_html( $file ) {
 	$chart        = [];
 	$search_array = array(
 		'ARTIST',
