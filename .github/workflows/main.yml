@@ -26,10 +26,10 @@ jobs:
     - name: Deploy files
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
       env:
-        FTP_SERVER: ${{ sercrets.FTP_URL }}
+        FTP_SERVER: ${{ secrets.FTP_URL }}
         FTP_USERNAME: ${{ secrets.FTP_USER }}
         FTP_PASSWORD: ${{ secrets.FTP_PWD }}
         METHOD: sftp
         PORT: 22
         REMOTE_DIR: ${{ secrets.FTP_DIR }}
-        ARGS: --transfer-all --exclude={'.gitignore','.github/*'} --delete-excluded
+        ARGS: --transfer-all --exclude=.gitignore --delete-excluded
