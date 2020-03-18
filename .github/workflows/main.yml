@@ -33,3 +33,15 @@ jobs:
         PORT: 22
         REMOTE_DIR: ${{ secrets.FTP_DIR }}
         ARGS: --transfer-all --exclude=.gitignore --delete-excluded
+        
+    - name: Install and run Composer
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PWD }}
+        port: 22
+        script: |
+          cd test.7357.dk/wp-content/plugins/abc-chart-parser/
+          curl -sS https://getcomposer.org/installer | php
+          php composer.phar install
