@@ -1,7 +1,5 @@
 <?php
 
-use Symfony\Component\Dotenv\Dotenv;
-
 public
 function pdf2html( $data ) {
 	$url  = 'https://cameleonpdf.p.rapidapi.com/pdf2html/.';

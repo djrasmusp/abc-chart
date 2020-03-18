@@ -15,6 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use Symfony\Component\Dotenv\Dotenv;
+use voku\helper\HtmlDomParser;
+
 require 'vendor/autoload.php';
 
 $dotenv = new Dotenv();
