@@ -34,7 +34,7 @@ function abc_chart_parser_activate() {
 		id mediumint(9) NOT NULL AUTO_INCREMENT,
 		title text,
 		type smallint(5) NOT NULL,
-		chart longtext
+		chart longtext,
 		UNIQUE KEY id (id)
 	) ". $charset_collate .";";
 
