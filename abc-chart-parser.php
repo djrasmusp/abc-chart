@@ -20,6 +20,6 @@ use Symfony\Component\Dotenv\Dotenv;
 $dotenv = new Dotenv();
 $dotenv->load(__DIR__.'/.env');
 
-require 'requires/pdf-to-html.php';
+require plugin_dir_path( __FILE__ ) .'/requires/pdf-to-html.php';
 
-pdf2html($_POST)
+pdf2html($_POST);
