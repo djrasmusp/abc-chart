@@ -25,5 +25,6 @@ $dotenv->load( plugin_dir_path( __FILE__ ) . '/.env' );
 
 require plugin_dir_path( __FILE__ ) . '/requires/pdf-to-html.php';
 require plugin_dir_path( __FILE__ ) . '/requires/parse-html.php';
+require plugin_dir_path(__FILE__) . '/requires/abc-settings.php';
 
 // pdf2html( $_POST );
