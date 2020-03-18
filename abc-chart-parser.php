@@ -15,13 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Symfony\Component\Dotenv\Dotenv;
 use voku\helper\HtmlDomParser;
 
 require 'vendor/autoload.php';
-
-$dotenv = new Dotenv();
-$dotenv->load( plugin_dir_path( __FILE__ ) . '/.env' );
 
 require plugin_dir_path( __FILE__ ) . '/requires/pdf-to-html.php';
 require plugin_dir_path( __FILE__ ) . '/requires/parse-html.php';
