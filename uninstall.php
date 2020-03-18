@@ -1,9 +1,10 @@
 <?php
-if (!defined('WP_UNINSTALL_PLUGIN')) {
+
+if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	die;
 }
 
-delete_option('abc_parser_settings');
+delete_option( 'abc_parser_settings' );
 
 global $wpdb;
-$wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}abc_charts");
+$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}abc_chart_parser" );
