@@ -7,7 +7,7 @@ function abc_chart_parser_menu() {
 	add_menu_page( 'Quotes Settings',
 	               'Quotes Styling',
 	               'manage_options',
-	               __FILE__,
+	               'abc-chart-parser.php',
 	               'abc_chart_parser_settings' );
 }
 
