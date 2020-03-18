@@ -21,7 +21,7 @@ use voku\helper\HtmlDomParser;
 require 'vendor/autoload.php';
 
 $dotenv = new Dotenv();
-$dotenv->load( __DIR__ . '/.env' );
+$dotenv->load( plugin_dir_path( __FILE__ ) . '/.env' );
 
 require plugin_dir_path( __FILE__ ) . '/requires/pdf-to-html.php';
 require plugin_dir_path( __FILE__ ) . '/requires/parse-html.php';
