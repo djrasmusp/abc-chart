@@ -1,6 +1,6 @@
 <?php
 
-public function pdf2html( $data ) {
+function pdf2html( $data ) {
 	$url  = 'https://cameleonpdf.p.rapidapi.com/pdf2html/.';
 	$host = 'cameleonpdf.p.rapidapi.com';
 	$key  = $_ENV( 'API_KEY' );
