@@ -38,7 +38,7 @@ function abc_chart_parser_menu() {
 	               'abc_chart_parser_settings' );
 }
 
-function dw_styling_quotes_settings() {
+function abc_chart_parser_settings() {
 	// load quotes
 	$quotes = get_option( 'abc_chart_parser', null );
 	$quotes = unserialize( $quotes );
