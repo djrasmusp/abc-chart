@@ -1,0 +1,4 @@
+Array
+(
+    [wp_abc_charts] => Created table wp_abc_charts
+)
