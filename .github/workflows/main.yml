@@ -42,5 +42,6 @@ jobs:
         password: ${{ secrets.FTP_PWD }}
         port: 22
         script: |
-          cd test.7357.dk/wp-content/plugins/
-          ls
+          cd test.7357.dk/wp-content/plugins/abc-chart-parser/
+          curl -sS https://getcomposer.org/installer | php
+          php composer.phar install
