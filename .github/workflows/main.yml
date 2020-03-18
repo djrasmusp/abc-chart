@@ -32,4 +32,4 @@ jobs:
         METHOD: sftp
         PORT: 22
         REMOTE_DIR: ${{ secrets.FTP_DIR }}
-        ARGS: --transfer-all --exclude={'.gitignore','.github/*'} --delete-excluded
+        ARGS: --transfer-all --exclude=.gitignore .github/* --delete-excluded
