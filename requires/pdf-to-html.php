@@ -1,6 +1,9 @@
 <?php
 
-public function pdf2html($data) {
+use Symfony\Component\Dotenv\Dotenv;
+
+public
+function pdf2html( $data ) {
 	$url  = 'https://cameleonpdf.p.rapidapi.com/pdf2html/.';
 	$host = 'cameleonpdf.p.rapidapi.com';
 	$key  = $_ENV( 'API_KEY' );
@@ -22,8 +25,11 @@ public function pdf2html($data) {
 
 	if ( is_wp_error( $response ) ) {
 		$error_message = $response->get_error_message();
-		return 'Something went wrong: '. $error_message;
+
+		return 'Something went wrong: ' . $error_message;
 	}
 
 	return $response;
 }
+
+;
