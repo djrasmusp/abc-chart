@@ -8,7 +8,8 @@ function abc_chart_parser_menu() {
 	               'ABC Chart Parser',
 	               'manage_options',
 	               'abc_chart_parser',
-	               'abc_chart_parser_add' );
+	               'abc_chart_parser_add',
+	               'dashicons-editor-ol' );
 
 	add_submenu_page( 'abc_chart_parser',
 	                  'Add Chart',
