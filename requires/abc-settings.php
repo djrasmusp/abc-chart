@@ -7,8 +7,32 @@ function abc_chart_parser_menu() {
 	add_menu_page( 'ABC Chart Parser',
 	               'ABC Chart Parser',
 	               'manage_options',
-	               'abc_parser_settings',
-	               'abc_chart_parser_settings' );
+	               'abc_chart_parser',
+	               'abc_chart_parser_add' );
+
+	add_submenu_page( 'abc_chart_parser',
+	                  'Add Chart',
+	                  'Add Chart',
+	                  'manage_options',
+	                  'abc_chart_parser',
+	                  'abc_chart_parser_add' );
+
+	add_submenu_page( 'abc_chart_parser',
+	                  'All Charts',
+	                  'All Charts',
+	                  'manage_options',
+	                  'abc_chart_parser_all' );
+
+	add_submenu_page( 'abc_chart_parser',
+	                  'Settings',
+	                  'Settings',
+	                  'manage_options',
+	                  'abc_chart_parser_settings',
+	                  'abc_chart_parser_settings' );
+}
+
+function abc_chart_parser_add() {
+	echo '<div class="wrap"><h1>Add New Chart</h1></div>';
 }
 
 function abc_chart_parser_settings() {
@@ -96,4 +120,6 @@ function abc_chart_parser_settings() {
         </form>
     </div>
 	<?php
-};
+}
+
+;
