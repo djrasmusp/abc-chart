@@ -1,5 +1,4 @@
 <?php
-
 function parse_html( $file ) {
 	$chart        = [];
 	$search_array = array(

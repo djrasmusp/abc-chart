@@ -1,6 +1,20 @@
 {
+    "name": "ABC Chart Parser",
+    "description": "A PDF to Chart parser for ABC Radio",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Rasmus P",
+            "email": "hello@rasmusp.com"
+        }
+    ],
     "require": {
         "voku/simple_html_dom": "^4.7",
         "voku/portable-utf8": "^5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "ACP\\": "./src"
+        }
     }
 }
