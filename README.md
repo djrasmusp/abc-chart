@@ -1,2 +1,2 @@
-# ABC CHART PARSER
-A WP Plugin to specific PDFs to HTML.
+# ABC CHART
+A WP Plugin to top50 charts from PDFs and XLS files for Radio ABC.
