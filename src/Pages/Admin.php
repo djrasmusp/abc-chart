@@ -45,15 +45,13 @@ class Admin extends BaseController {
 	}
 
 	public function setSettings() {
-		$args = array();
-
-		foreach ( $this->plugin_settings['fields'] as $field ) {
-			$args[] = array(
+		$args = array(
+			array(
 				'option_group' => 'acp_settings',
-				'option_name'  => $field['id'],
+				'option_name'  => 'chart_settings',
 				'callback'     => array( $this->callbacks, 'acpSettings' )
-			);
-		}
+			)
+		);
 
 		$this->settings->setSettings( $args );
 	}
@@ -65,7 +63,7 @@ class Admin extends BaseController {
 			$args[] = array(
 				'id'       => $section['id'],
 				'title'    => $section['title'],
-				'callback' => array( $this->callbacks, 'acpSettingsSection' ),
+				'callback' => array( $this->callbacks, 'acpSettingsSections' ),
 				'page'     => 'chart_settings'
 			);
 		}
@@ -84,6 +82,7 @@ class Admin extends BaseController {
 				'page'     => 'chart_settings',
 				'section'  => $field['section'],
 				'args'     => array(
+					'option_name' => 'chart_settings',
 					'label_for'   => $field['id'],
 					'helper_text' => $field['helper_text']
 				)

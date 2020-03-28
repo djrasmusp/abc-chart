@@ -68,7 +68,7 @@ if ( ! class_exists( 'SettingsApi' ) ) {
 			foreach ( $this->sections as $section ) {
 				add_settings_section( $section['id'],
 				                      $section['title'],
-					( isset( $setting['callback'] ) ? $setting['callback']
+					( isset( $section['callback'] ) ? $section['callback']
 						: '' ),
 					                  $section['page'] );
 			}

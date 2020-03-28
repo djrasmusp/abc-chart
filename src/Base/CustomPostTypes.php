@@ -3,17 +3,20 @@
 
 namespace ACP\Base;
 
+use ACP\Base\BaseController;
+
 if ( ! class_exists( 'CustomPostTypes' ) ) {
-	class CustomPostTypes {
+	class CustomPostTypes extends BaseController {
 		public function register() {
 			add_action( 'init', array( $this, 'custom_post_type' ) );
 			add_action( 'init', array( $this, 'custom_post_type_tax' ) );
+			add_action( 'init', array( $this, 'make_cpt_taxs' ) );
 			flush_rewrite_rules();
 		}
 
 		function custom_post_type() {
 			$labels = array(
-				'name'               => _x( 'Charts',
+				'name'               => _x( 'ABC Charts',
 				                            'post type general name' ),
 				'singular_name'      => _x( 'Chart',
 				                            'post type singular name' ),
@@ -27,7 +30,7 @@ if ( ! class_exists( 'CustomPostTypes' ) ) {
 				'not_found'          => __( 'No charts found' ),
 				'not_found_in_trash' => __( 'No charts found in the Trash' ),
 				'parent_item_colon'  => null,
-				'menu_name'          => 'Charts'
+				'menu_name'          => 'ABC Charts'
 			);
 			$args   = array(
 				'labels'        => $labels,
@@ -62,12 +65,19 @@ if ( ! class_exists( 'CustomPostTypes' ) ) {
 				'menu_name'         => __( 'Chart Types' ),
 			);
 			$args   = array(
-				'labels'       => $labels,
-				'hierarchical' => true,
-				'show_in_menu' => true,
-				'show_tagcloud' => false,
+				'labels'        => $labels,
+				'hierarchical'  => true,
+				'public'  => false,
 			);
 			register_taxonomy( 'chart_type', 'chart', $args );
+		}
+
+		function make_cpt_taxs() {
+			foreach ( $this->plugin_terms as $term ) {
+				wp_insert_term( $term['term'],
+				                'chart_type',
+				                array( 'slug' => $term['slug'] ) );
+			}
 		}
 	}
 }

@@ -10,12 +10,12 @@ if ( ! class_exists( 'BaseController' ) ) {
 		public $plugin;
 
 		public $plugin_settings = array();
+		public $plugin_terms = array();
 
 		public function __construct() {
 			$this->plugin_path = plugin_dir_path( dirname( __FILE__, 2 ) );
 			$this->plugin_url  = plugin_dir_url( dirname( __FILE__, 2 ) );
-			$this->plugin      = plugin_basename( dirname( __FILE__, 3 ) )
-			                     . '/abc-chart-parser.php';
+			$this->plugin      = plugin_basename( dirname( __FILE__, 3 ) ) . '/abc-chart.php';
 
 			$this->plugin_settings = array(
 				'sections' => array(
@@ -47,6 +47,21 @@ if ( ! class_exists( 'BaseController' ) ) {
 						'section'     => 'acp_spotify_setting',
 						'helper_text' => 'Get Client ID and Secret for <a href="https://developer.spotify.com" target="_blank">Spotify</a>.'
 					),
+				)
+			);
+
+			$this->plugin_terms = array(
+				array(
+					'term' => 'ABC Top 50',
+					'slug' => 'abctop50'
+				),
+				array(
+					'term' => 'Dancechart',
+					'slug' => 'dancechart',
+				),
+				array(
+					'term' => 'UK Chart Show',
+					'slug' => 'ukchartshow'
 				)
 			);
 		}
