@@ -8,7 +8,7 @@ namespace ACP\Pages;
 
 use \ACP\Base\BaseController;
 use \ACP\API\SettingsApi;
-use \ACP\API\Callbacks\AdminCallbacks;
+use \ACP\API\Callbacks\SettingsCallbacks;
 
 class Admin extends BaseController {
 	public $settings;
@@ -20,7 +20,7 @@ class Admin extends BaseController {
 	public function register() {
 		$this->settings = new SettingsApi();
 
-		$this->callbacks = new AdminCallbacks();
+		$this->callbacks = new SettingsCallbacks();
 
 		$this->setPages();
 
@@ -39,85 +39,56 @@ class Admin extends BaseController {
 				'menu_title'  => 'Settings',
 				'capability'  => 'manage_options',
 				'menu_slug'   => 'chart_settings',
-				'callback'    => array( $this->callbacks, 'adminSettings' )
+				'callback'    => array( $this->callbacks, 'acpSettingsPage' )
 			)
 		);
 	}
 
 	public function setSettings() {
-		$args = array(
-			array(
+		$args = array();
+
+		foreach ( $this->plugin_settings['fields'] as $field ) {
+			$args[] = array(
 				'option_group' => 'acp_settings',
-				'option_name'  => 'acp_api_key',
-				'callback'     => array( $this->callbacks, 'acpOptionsGroup' )
-			),
-			array(
-				'option_group' => 'acp_settings',
-				'option_name'  => 'acp_client_id',
-				'callback'     => array( $this->callbacks, 'acpOptionsGroup' )
-			),
-			array(
-				'option_group' => 'acp_settings',
-				'option_name'  => 'acp_client_secret',
-				'callback'     => array( $this->callbacks, 'acpOptionsGroup' )
-			)
-		);
+				'option_name'  => $field['id'],
+				'callback'     => array( $this->callbacks, 'acpSettings' )
+			);
+		}
 
 		$this->settings->setSettings( $args );
 	}
 
 	public function setSections() {
-		$args = array(
-			array(
-				'id'       => 'acp_cameleonpdf_settings',
-				'title'    => 'CameleonPDF API Settings',
-				'callback' => array( $this->callbacks, 'acpAdminSection' ),
+		$args = array();
+
+		foreach ( $this->plugin_settings["sections"] as $section ) {
+			$args[] = array(
+				'id'       => $section['id'],
+				'title'    => $section['title'],
+				'callback' => array( $this->callbacks, 'acpSettingsSection' ),
 				'page'     => 'chart_settings'
-			),
-			array(
-				'id'       => 'acp_spotify_settings',
-				'title'    => 'Spotify API Settings',
-				'callback' => array( $this->callbacks, 'acpAdminSection' ),
-				'page'     => 'chart_settings'
-			)
-		);
+			);
+		}
 
 		$this->settings->setSections( $args );
 	}
 
 	public function setFields() {
-		$args = array(
-			array(
-				'id'       => 'acp_api_key',
-				'title'    => 'API Key',
-				'callback' => array( $this->callbacks, 'acpSettingApiKey' ),
+		$args = array();
+
+		foreach ( $this->plugin_settings['fields'] as $field ) {
+			$args[] = array(
+				'id'       => $field['id'],
+				'title'    => $field['title'],
+				'callback' => array( $this->callbacks, 'textField' ),
 				'page'     => 'chart_settings',
-				'section'  => 'acp_cameleonpdf_settings',
+				'section'  => $field['section'],
 				'args'     => array(
-					'label_for' => 'acp_api_key'
+					'label_for'   => $field['id'],
+					'helper_text' => $field['helper_text']
 				)
-			),
-			array(
-				'id'       => 'acp_client_id',
-				'title'    => 'Client Id',
-				'callback' => array( $this->callbacks, 'acpSettingClientId' ),
-				'page'     => 'chart_settings',
-				'section'  => 'acp_spotify_settings',
-				'args'     => array(
-					'label_for' => 'acp_client_id'
-				)
-			),
-			array(
-				'id'       => 'acp_client_secret',
-				'title'    => 'Client Secret',
-				'callback' => array( $this->callbacks, 'acpSettingClientSecret' ),
-				'page'     => 'chart_settings',
-				'section'  => 'acp_spotify_settings',
-				'args'     => array(
-					'label_for' => 'acp_client_secret'
-				)
-			)
-		);
+			);
+		}
 
 		$this->settings->setFields( $args );
 	}
