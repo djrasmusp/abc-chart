@@ -15,7 +15,7 @@ if ( ! class_exists( 'Init' ) ) {
 				Base\CustomPostTypes::class,
 				Base\Enqueue::class,
 				Base\SettingsLink::class,
-				Pages\Admin::class
+				Pages\Settings::class
 			];
 		}
 

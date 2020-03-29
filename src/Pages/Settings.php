@@ -10,7 +10,7 @@ use \ACP\Base\BaseController;
 use \ACP\API\SettingsApi;
 use \ACP\API\Callbacks\SettingsCallbacks;
 
-class Admin extends BaseController {
+class Settings extends BaseController {
 	public $settings;
 
 	public $callbacks;

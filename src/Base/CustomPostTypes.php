@@ -8,13 +8,13 @@ use ACP\Base\BaseController;
 if ( ! class_exists( 'CustomPostTypes' ) ) {
 	class CustomPostTypes extends BaseController {
 		public function register() {
-			add_action( 'init', array( $this, 'custom_post_type' ) );
-			add_action( 'init', array( $this, 'custom_post_type_tax' ) );
-			add_action( 'init', array( $this, 'make_cpt_taxs' ) );
+			add_action( 'init', array( $this, 'customPostType' ) );
+			add_action( 'init', array( $this, 'customPostTypeTax' ) );
+			add_action( 'init', array( $this, 'premadeTerms' ) );
 			flush_rewrite_rules();
 		}
 
-		function custom_post_type() {
+		function customPostType() {
 			$labels = array(
 				'name'               => _x( 'ABC Charts',
 				                            'post type general name' ),
@@ -48,31 +48,22 @@ if ( ! class_exists( 'CustomPostTypes' ) ) {
 			register_post_type( 'chart', $args );
 		}
 
-		function custom_post_type_tax() {
+		function customPostTypeTax() {
 			$labels = array(
-				'name'              => _x( 'Chart Types',
-				                           'taxonomy general name' ),
-				'singular_name'     => _x( 'Chart Type',
-				                           'taxonomy singular name' ),
-				'search_items'      => __( 'Search Product Categories' ),
-				'all_items'         => __( 'All Chart Types' ),
-				'parent_item'       => null,
-				'parent_item_colon' => null,
-				'edit_item'         => __( 'Edit Chart Type' ),
-				'update_item'       => __( 'Update Chart Type' ),
-				'add_new_item'      => __( 'Add New Chart Type' ),
-				'new_item_name'     => __( 'New Chart Type' ),
-				'menu_name'         => __( 'Chart Types' ),
+				'name'          => _x( 'Chart Types',
+				                       'taxonomy general name' ),
+				'singular_name' => _x( 'Chart Type',
+				                       'taxonomy singular name' )
 			);
 			$args   = array(
-				'labels'        => $labels,
-				'hierarchical'  => true,
-				'public'  => false,
+				'labels'       => $labels,
+				'hierarchical' => true,
+				'public'       => false,
 			);
 			register_taxonomy( 'chart_type', 'chart', $args );
 		}
 
-		function make_cpt_taxs() {
+		function premadeTerms() {
 			foreach ( $this->plugin_terms as $term ) {
 				wp_insert_term( $term['term'],
 				                'chart_type',
