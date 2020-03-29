@@ -8,13 +8,13 @@ use ACP\Base\BaseController;
 if ( ! class_exists( 'CustomPostTypes' ) ) {
 	class CustomPostTypes extends BaseController {
 		public function register() {
-			add_action( 'init', array( $this, 'customPostType' ) );
-			add_action( 'init', array( $this, 'customPostTypeTax' ) );
-			add_action( 'init', array( $this, 'premadeTerms' ) );
+			add_action( 'init', array( $this, 'setCustomPostType' ) );
+			add_action( 'init', array( $this, 'setCustomPostTypeTax' ) );
+			add_action( 'init', array( $this, 'setTerms' ) );
 			flush_rewrite_rules();
 		}
 
-		function customPostType() {
+		function setCustomPostType() {
 			$labels = array(
 				'name'               => _x( 'ABC Charts',
 				                            'post type general name' ),
@@ -48,7 +48,7 @@ if ( ! class_exists( 'CustomPostTypes' ) ) {
 			register_post_type( 'chart', $args );
 		}
 
-		function customPostTypeTax() {
+		function setCustomPostTypeTax() {
 			$labels = array(
 				'name'          => _x( 'Chart Types',
 				                       'taxonomy general name' ),
@@ -63,7 +63,7 @@ if ( ! class_exists( 'CustomPostTypes' ) ) {
 			register_taxonomy( 'chart_type', 'chart', $args );
 		}
 
-		function premadeTerms() {
+		function setTerms() {
 			foreach ( $this->plugin_terms as $term ) {
 				wp_insert_term( $term['term'],
 				                'chart_type',

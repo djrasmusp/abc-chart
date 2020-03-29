@@ -14,6 +14,7 @@ if ( ! class_exists( 'Init' ) ) {
 			return [
 				Base\CustomPostTypes::class,
 				Base\Enqueue::class,
+				Base\PostMetaBox::class,
 				Base\SettingsLink::class,
 				Pages\Settings::class
 			];

@@ -11,7 +11,7 @@ use ACP\Base\BaseController;
 class SettingsCallbacks extends BaseController {
 	public function acpSettingsPage() {
 		return require_once( $this->plugin_path
-		                     . 'templates/admin.php' );
+		                     . 'templates/settings.php' );
 	}
 
 	public function acpSettings( $input ) {
