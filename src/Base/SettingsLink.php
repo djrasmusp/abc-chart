@@ -12,7 +12,12 @@ class SettingsLink extends BaseController {
 	}
 
 	public function settings_link( $links ) {
-		$settings_link = '<a href="admin.php?page=chart_settings" title="Settings for ABC Charts">Settings</a>';
+		if(get_option( 'chart_settings', null ) !== null ){
+			$settings_link = '<a href="admin.php?page=chart_settings" title="Settings for ABC Charts">Settings</a>';
+		}else{
+			$settings_link = '<a href="admin.php?page=chart_settings" title="Settings for ABC Charts">SETUP</a>';
+		}
+
 		array_push( $links, $settings_link );
 
 		return $links;
