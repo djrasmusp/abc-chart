@@ -27,7 +27,6 @@ if ( metadata_exists( 'post', get_the_ID(), 'chart' ) ) {
             </td>
         </tr>
     </table>
-    <?php echo url_to_postid('https://wp.plugins/hitlister/abctop50/152020/') ?>
     <table class="form-table" role="presentation">
         <thead>
         <tr class="alternate">
@@ -35,33 +34,51 @@ if ( metadata_exists( 'post', get_the_ID(), 'chart' ) ) {
             <th style="width: 10px">SU</th>
             <th style="width: 10px">W</th>
             <th>Track</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
 		<?php
-		$evn_row = 1;
-		foreach (
-			get_post_meta( get_the_ID(), 'chart' )[0]['tracks'] as $item
-		) {
+		$evn_row    = 1;
+		$row_number = 0;
+		foreach ( get_post_meta( get_the_ID(), 'chart' )[0]['tracks'] as $item )
+		{
 			if ( $evn_row % 2 ) {
 				echo '<tr>';
 			} else {
 				echo '<tr class="alternate">';
 			}
 			$evn_row ++; ?>
-            <td class="row-title"><?php echo $item['position'] ?></td>
-            <td><input class="small-text"
-                       value="<?php echo $item['last_week'] ?>"></td>
-            <td><input class="small-text"
-                       value="<?php echo $item['number_of_weeks'] ?>"></td>
-            <td><input class="large-text" value="<?php echo $item['track'] ?>">
-            </td>
+                <td class="row-title"><?php echo $item['position'] ?></td>
+                <td><input class="small-text"
+                           name="tracks[<?php echo $row_number ?>][last_week]"
+                           value="<?php echo $item['last_week'] ?>"></td>
+                <td><input class="small-text"
+                           name="tracks[<?php echo $row_number ?>][number_of_weeks]"
+                           value="<?php echo $item['number_of_weeks'] ?>"></td>
+                <td><input class="large-text"
+                           name="tracks[<?php echo $row_number ?>][track]"
+                           value="<?php echo $item['track'] ?>">
+                </td>
+                <td>
+                    <input type="text"
+                           name="tracks[<?php echo $row_number ?>][update]"
+                           class="large-text" value=""
+                           placeholder="udfyld med spotify album id">
+                </td>
+                <td>
+                    <img src="<?php echo $item['spotify']['url'] ?>" height="100">
+                    <input type="hidden" name="tracks[<?php echo $row_number ?>][album_id]" value="<?php echo $item['spotify']['id']?>">
+                    <input type="hidden" name="tracks[<?php echo $row_number ?>][album_url]" value="<?php echo $item['spotify']['url']?>">
+                </td>
             </tr>
-		<?php } ?>
+			<?php
+			$row_number ++;
+		} ?>
         </tbody>
     </table>
-	<?php
-	return;
+	<?php return;
 } ?>
 <form action="<?php echo admin_url( 'admin.php' ) ?>" method="post">
     <table class="form-table" role="presentation">
@@ -88,7 +105,6 @@ if ( metadata_exists( 'post', get_the_ID(), 'chart' ) ) {
             <th scope="row"><label for="file">File</label></th>
             <td><input type="file" class="regular-text"
                        name="file"
-                       value="f9c31564b6msh4166c642bb69093p174562jsn56f40cd6f5ed"
                        accept="application/pdf,application/vnd.ms-excel"/>
             </td>
         </tr>
@@ -98,5 +114,4 @@ if ( metadata_exists( 'post', get_the_ID(), 'chart' ) ) {
            value="<?php echo get_the_ID() ?>">
 	<?php wp_nonce_field( 'wpse10500', 'make_chart_nonce' ); ?>
     <input type="submit" name="submit" value="Submit">
-</form>
 </form>

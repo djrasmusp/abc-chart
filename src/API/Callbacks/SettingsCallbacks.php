@@ -18,7 +18,7 @@ class SettingsCallbacks extends BaseController {
 		$output = array();
 
 		foreach ($this->plugin_settings[fields] as $field){
-			$output[$field['id']] = $input[$field[id]];
+			$output[$field['id']] = $input[$field['id']];
 		}
 		return $output;
 	}
